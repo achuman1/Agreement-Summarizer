@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+transformers>=4.0.0
+torch
+nltk
+jinja2

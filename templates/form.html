@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Legal Document Summarizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+        .summary p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+    </style>
+    <script>
+        function showSummarizing() {
+            const button = document.getElementById('summarize-btn');
+            button.disabled = true;
+            button.innerText = 'Summarizing...';
+        }
+    </script>
+</head>
+<body>
+    <h1>Upload Legal Document</h1>
+    <form action="/summarize/" method="post" enctype="multipart/form-data" onsubmit="showSummarizing()">
+        <input type="file" name="file" required>
+        <button type="submit" id="summarize-btn">Summarize</button>
+    </form>
+
+    {% if summary %}
+        <h2><strong>Summary:</strong></h2>
+        <div class="summary">
+            {% for paragraph in summary.split('\n\n') %}
+                <p>{{ paragraph }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
